@@ -1,4 +1,5 @@
-import  { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "emailjs-com";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const ContactForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSent, setIsSent] = useState(false);
+  const form = useRef(); // Créer une référence pour le formulaire
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -36,15 +39,30 @@ const ContactForm = () => {
     e.preventDefault();
     const formErrors = validate();
     if (Object.keys(formErrors).length === 0) {
-      // Si pas d'erreurs, on peut soumettre le formulaire
-      console.log("Formulaire soumis : ", formData);
+      // Si pas d'erreurs, on envoie le formulaire via EmailJS
+      emailjs
+        .sendForm(
+          "service_e9thwro", // Remplace par ton ID de service EmailJS
+          "template_x3ot427", // Remplace par ton ID de modèle EmailJS
+          form.current, // Utilisation de la référence du formulaire
+          "C1TPEyNx6SmKC2AWw" // Ton publicKey EmailJS
+        )
+        .then(
+          (result) => {
+            console.log("Email envoyé:", result.text);
+            setIsSent(true);
+          },
+          (error) => {
+            console.error("Erreur lors de l'envoi :", error.text);
+          }
+        );
     } else {
       setErrors(formErrors);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={form} onSubmit={handleSubmit}>
       <div>
         <label htmlFor="nom">Nom*</label>
         <input
@@ -92,7 +110,6 @@ const ContactForm = () => {
           name="tel"
           value={formData.tel}
           onChange={handleChange}
-          pattern="[0-9]{8,15}"
           required
         />
         {errors.tel && <p style={{ color: "red" }}>{errors.tel}</p>}
@@ -127,6 +144,8 @@ const ContactForm = () => {
       </div>
 
       <button type="submit">Envoyer</button>
+
+      {isSent && <p style={{ color: "green" }}>Message envoyé avec succès !</p>}
     </form>
   );
 };
