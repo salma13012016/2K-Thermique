@@ -1,12 +1,24 @@
-
+import ContactForm from "../../components/ContactForm";
 
 const Contact= () => {
     return (
-        <div>
+        <main>
+            <div>
             <h1>
-                Notre ploitique
+                Contactez-nous
             </h1>
-        </div>
+            <p>
+            Pour des demandes de devis, 
+            veuillez envoyer le plan de projet ainsi que sa nature à l'e-mail suivant.   
+            </p>
+            <a href="mailto:contact@2kthermique.fr">contact@2kthermique.fr</a>
+            </div>
+
+           <div>
+           <ContactForm />
+           </div>
+            
+        </main>
     );
 }
 

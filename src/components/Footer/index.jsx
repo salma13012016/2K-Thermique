@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <footer>
-          <h4>
+          <span>
             2K Thermique
-          </h4>
+          </span>
       <nav>
         <ul>
           <li><Link to="/">Accueil</Link></li>
