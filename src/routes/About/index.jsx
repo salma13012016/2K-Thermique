@@ -1,6 +1,9 @@
-
+import { useEffect } from "react";
 
 const About= () => {
+    useEffect(() => {
+        document.title = "A propose de nous - 2K Thermique";
+      }, []);
     return (
         <main>
             <div>

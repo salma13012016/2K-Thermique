@@ -1,6 +1,11 @@
 import ContactForm from "../../components/ContactForm";
+import { useEffect } from "react";
 
 const Contact= () => {
+    useEffect(() => {
+        document.title = "Contact - 2K Thermique";
+      }, []);
+
     return (
         <main>
             <div>

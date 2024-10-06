@@ -1,0 +1,50 @@
+@use 'mixin';  
+@use 'var';    
+
+.section {
+  padding: 1rem;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 2rem;
+
+  h1, h2, h3 {
+    color: var.$secondary-color;  
+    margin-bottom: 3rem;
+  }
+
+  p {
+    line-height: 1.6;
+    color: var.$text-color;  
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @include mixin.respond-to(sm) {  
+    padding: 2rem;
+  }
+
+  @include mixin.respond-to(md) {  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+
+    p {
+      max-width: 800px;
+    }
+  }
+
+  @include mixin.respond-to(lg) {  
+    padding: 4rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+
+  @include mixin.respond-to(md) {  
+    max-width: 50%;
+  }
+}

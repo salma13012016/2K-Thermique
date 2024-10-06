@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
+import InputField from "../InputField";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -63,58 +64,36 @@ const ContactForm = () => {
 
   return (
     <form ref={form} onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="nom">Nom*</label>
-        <input
-          type="text"
-          id="nom"
-          name="nom"
-          value={formData.nom}
-          onChange={handleChange}
-          required
-        />
-        {errors.nom && <p style={{ color: "red" }}>{errors.nom}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="prenom">Prénom*</label>
-        <input
-          type="text"
-          id="prenom"
-          name="prenom"
-          value={formData.prenom}
-          onChange={handleChange}
-          required
-        />
-        {errors.prenom && <p style={{ color: "red" }}>{errors.prenom}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="email">Email*</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="tel">Téléphone*</label>
-        <input
-          type="tel"
-          id="tel"
-          name="tel"
-          value={formData.tel}
-          onChange={handleChange}
-          required
-        />
-        {errors.tel && <p style={{ color: "red" }}>{errors.tel}</p>}
-      </div>
-
+      <InputField
+        label="Nom"
+        name="nom"
+        value={formData.nom}
+        onChange={handleChange}
+        error={errors.nom}
+      />
+      <InputField
+        label="Prénom"
+        name="prenom"
+        value={formData.prenom}
+        onChange={handleChange}
+        error={errors.prenom}
+      />
+      <InputField
+        label="Email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        error={errors.email}
+        type="email"
+      />
+      <InputField
+        label="Téléphone"
+        name="tel"
+        value={formData.tel}
+        onChange={handleChange}
+        error={errors.tel}
+        type="tel"
+      />
       <div>
         <label htmlFor="message">Message*</label>
         <textarea
@@ -137,7 +116,7 @@ const ContactForm = () => {
             onChange={handleChange}
           />
           J'accepte que ces données soient stockées et traitées dans le but
-          d'établir un contact. Je suis conscient que je peux révoquer mon
+          d'établir un contact. Je suis conscient(e) que je peux révoquer mon
           consentement à tout moment.*
         </label>
         {errors.consent && <p style={{ color: "red" }}>{errors.consent}</p>}

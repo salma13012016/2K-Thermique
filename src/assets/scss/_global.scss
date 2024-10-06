@@ -1,0 +1,62 @@
+@use 'mixin';  
+@use 'var';    
+
+body {
+  margin: 1rem;
+  padding: 0;
+  font-family: var.$passion_one;  
+  background-color: var.$background-color;
+    
+}
+
+main {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var.$background-color;
+    padding: 1.5rem 0.5rem;
+    row-gap: 1.5rem;
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+a {
+    text-decoration: none;
+    color: var.$text-color;  
+  
+    &:hover {
+      color: var.$secondary-color;  
+    }
+  }
+  
+  header {
+    background-color: var.$primary-color;  
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+
+    li {
+      margin: 0 10px;
+    }
+  }
+
+  @include mixin.respond-to(sm) {     
+    padding: 1.5rem;
+  }
+
+  @include mixin.respond-to(md) {     
+    nav ul {
+      justify-content: flex-start;
+    }
+  }
+}

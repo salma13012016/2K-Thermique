@@ -1,6 +1,13 @@
+import { useEffect } from "react";
+
 
 const Home= () => {
+    useEffect(() => {
+        document.title = "Accueil - 2K Thermique";
+      }, []);
+
     return (
+        
         <main>
             <div>
             <section>

@@ -1,5 +1,10 @@
+import { useEffect } from "react";
 
 const Legal= () => {
+    useEffect(() => {
+        document.title = "Mentions Légales - 2K Thermique";
+      }, []);
+
     return (
         <main>
             <h1>

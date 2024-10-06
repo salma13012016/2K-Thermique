@@ -1,0 +1,14 @@
+@use 'var';
+
+// Mixin pour les breakpoints
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == sm {
+      @media (min-width: var.$breakpoint-sm) { @content; }
+    } @else if $breakpoint == md {
+      @media (min-width: var.$breakpoint-md) { @content; }
+    } @else if $breakpoint == lg {
+      @media (min-width: var.$breakpoint-lg) { @content; }
+    } @else if $breakpoint == xl {
+      @media (min-width: var.$breakpoint-xl) { @content; }
+    }
+  }

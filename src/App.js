@@ -1,26 +1,35 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import About from './routes/About';
-import Legal from './routes/Legal';
-import Contact from './routes/Contact';
-import Home from './routes/Home';
+
+const Home = lazy(() => import('./routes/Home'));
+const About = lazy(() => import('./routes/About'));
+const Contact = lazy(() => import('./routes/Contact'));
+const Legal = lazy(() => import('./routes/Legal'));
+const NotFound = lazy(() => import('./routes/NotFound'));
+
 
 
 const App = () => {
   return (
-    <Router>
-    <Header />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/legal" element={<Legal />} />
-    </Routes>
-    <Footer />
-  </Router>
-  );
+    
+      <Router>
+      <Header />
+      <Suspense fallback={<div>Chargement...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      <Footer />
+     </Router>
+  
 
+  );
 };
 
 export default App;
